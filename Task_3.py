@@ -1,27 +1,25 @@
 class Worker:
-    name = "Ivan"
-    surname = "Ivanov"
-    position = "Maneger"
-    _income = {"Wage": 70000, "Bonus": 120000}
+
+    def __init__(self, name, surname, position, wage, bonus):
+        self.name = name
+        self.surname = surname
+        self.position = position
+        _income = {"Wage": wage, "Bonus": bonus}
 
 
 class Position(Worker):
+    def __init__(self, name, surname, position, wage, bonus):
+        super().__init__(name, surname, position, wage, bonus)
+
     def get_full_name(self):
-        self.name = Worker.name
-        self.surname = Worker.surname
-        ns = self.name + self.surname
-        return ns
+        return self.name + ' ' + self.surname
 
     def get_total_income(self):
-        self.total_income = sum(Worker._income())
-        return self.total_income
+        return sum(self._income.values())
 
-Worker.name = input("Введите имя сотрудника: ")
-Worker.surname = input("Введите фамилию сотрудника: ")
-Worker.position = input("Введите должность сотрудника: ")
-a = input("Введите оклад сотрудника: ")
-Worker._income["Wage"] = a
-b = input("Введите премию сотрудника: ")
-Worker._income["Bonus"] = b
-print(Position.get_full_name(Worker.name, Worker.surname))
-print(Position.get_total_income)
+
+employee = Position("Ivan", "Durak", "Royal groom", 10, 1500)
+
+print(employee.get_full_name)
+print(employee.position)
+print(employee.get_total_income)
